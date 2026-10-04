@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zone 5 Technologies â€” in stock now</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@800&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#eef1f0; --card:#ffffff; --ink:#131a1e; --muted:#5f6b70;
+  --line:#dfe4e3; --accent:#f0531e; --trust:#0f9d6b;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--page); color:var(--ink);
+  font-family:Inter,system-ui,sans-serif; line-height:1.5;
+  padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);
+}
+.wrap{max-width:1120px; margin:0 auto; padding:0 20px}
+
+header{padding:34px 0 20px; border-bottom:1px solid var(--line)}
+
+/* Zone 5 Technologies lockup: colour bar (heart-rate zones) with a zone-5
+   marker, ZONE5 wordmark in Orbitron with an enlarged 5, spread subline.
+   Bar and subline are pulled tight over the wordmark (their settings). */
+.logo{display:inline-flex; flex-direction:column; align-items:stretch; line-height:1;
+  --z5-size:48px; --z5-bargap:-2px; --z5-subgap:-1px}
+.logo .bar{display:flex; gap:2px; height:5px; margin-bottom:var(--z5-bargap);
+  position:relative; z-index:0}
+.logo .bar i{flex:1; display:block}
+.logo .bar i:nth-child(1){background:#B0B0B0}
+.logo .bar i:nth-child(2){background:#00A8FF}
+.logo .bar i:nth-child(3){background:#00D91E}
+.logo .bar i:nth-child(4){background:#FF5605}
+.logo .bar i:nth-child(5){background:#EF0000; position:relative}
+.logo .bar i:nth-child(5)::after{content:""; position:absolute; left:58%; top:-3px;
+  width:3px; height:11px; background:var(--ink)}
+.logo .word{font-family:Orbitron,sans-serif; font-weight:800; font-size:var(--z5-size);
+  letter-spacing:-.03em; color:var(--ink); position:relative; z-index:1; white-space:nowrap}
+.logo .word b{font-weight:800; font-size:1.09em; display:inline-block; transform:translateY(.03em)}
+.logo .sub{display:flex; justify-content:space-between; margin-top:var(--z5-subgap);
+  font-family:Arial,Helvetica,sans-serif; font-weight:600;
+  font-size:calc(var(--z5-size)*.205); color:var(--ink); position:relative; z-index:1}
+@media (max-width:520px){.logo{--z5-size:38px}}
+.brand{
+  font-family:"Space Grotesk",Inter,sans-serif; font-weight:600;
+  font-size:clamp(24px,4.5vw,34px); letter-spacing:-.02em; margin:0;
+}
+.tagline{color:var(--muted); max-width:60ch; margin:8px 0 0; font-size:15px}
+.trust{display:flex; flex-wrap:wrap; gap:8px 10px; margin-top:16px}
+.trust b{
+  font-weight:500; font-size:13px; background:#fff; border:1px solid var(--line);
+  padding:6px 11px; border-radius:999px; color:var(--ink);
+}
+.trust b.guar{border-color:rgba(15,157,107,.35); color:var(--trust)}
+.meta{display:flex; justify-content:space-between; align-items:baseline;
+  gap:12px; flex-wrap:wrap; margin:22px 0 6px; color:var(--muted); font-size:13px}
+.meta .n{color:var(--ink); font-weight:600}
+
+.grid{
+  display:grid; gap:18px; padding:14px 0 40px;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+}
+.card{
+  background:var(--card); border:1px solid var(--line); border-radius:14px;
+  overflow:hidden; cursor:pointer; display:flex; flex-direction:column;
+  transition:border-color .15s ease, transform .15s ease;
+}
+.card:hover{border-color:#c3cbc9; transform:translateY(-2px)}
+.card:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.ph{position:relative; aspect-ratio:4/5; background:#f3f5f4}
+.ph img{width:100%; height:100%; object-fit:cover; display:block}
+.count{
+  position:absolute; left:10px; bottom:10px; background:rgba(19,26,30,.82);
+  color:#fff; font-size:12px; padding:4px 9px; border-radius:999px;
+}
+.body{padding:14px 15px 17px; display:flex; flex-direction:column; gap:7px}
+.price{
+  font-family:"Space Grotesk",Inter,sans-serif; font-weight:600;
+  font-size:22px; color:var(--accent); letter-spacing:-.01em;
+}
+.title{font-size:15px; font-weight:600; margin:0; line-height:1.3}
+.pill{align-self:flex-start; font-size:12px; color:var(--muted);
+  border:1px solid var(--line); padding:3px 9px; border-radius:999px}
+.desc{margin:2px 0 0; color:var(--muted); font-size:13.5px;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden}
+
+.empty{padding:60px 0; text-align:center; color:var(--muted)}
+
+footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--muted); font-size:13px}
+.cta{
+  display:inline-block; background:var(--accent); color:#fff; text-decoration:none;
+  font-weight:600; padding:11px 18px; border-radius:10px; margin-bottom:14px;
+}
+.cta:hover{filter:brightness(1.05)}
+.email{margin:0 0 14px; font-size:14px}
+.email a{color:var(--ink); font-weight:600}
+
+/* lightbox */
+.lb{position:fixed; inset:0; background:rgba(10,14,16,.95); display:none;
+  z-index:50; flex-direction:column; padding:16px}
+.lb.open{display:flex}
+.lb .stage{flex:1; display:flex; align-items:center; justify-content:center; min-height:0}
+.lb .stage img{max-width:92vw; max-height:100%; object-fit:contain; border-radius:8px}
+.lb .x,.lb .nav{position:absolute; background:rgba(255,255,255,.12); color:#fff;
+  border:0; width:46px; height:46px; border-radius:50%; font-size:20px; cursor:pointer}
+.lb .x{top:18px; right:18px; z-index:2}
+.lb .prev{left:18px; top:46%; transform:translateY(-50%)}
+.lb .next{right:18px; top:46%; transform:translateY(-50%)}
+.lb .panel{max-width:720px; margin:14px auto 2px; text-align:center; color:#fff}
+.lb .ptop{display:flex; justify-content:center; align-items:baseline;
+  gap:12px; flex-wrap:wrap}
+.lb .ptitle{font-weight:600; font-size:17px}
+.lb .pprice{font-family:"Space Grotesk",Inter,sans-serif; font-weight:600;
+  font-size:17px; color:var(--accent)}
+.lb .pcond,.lb .pcount{color:#aeb6bd; font-size:13px}
+.lb .pdesc{margin:9px 0 0; color:#d7dde1; font-size:14px; line-height:1.55;
+  max-height:22vh; overflow:auto; white-space:pre-wrap}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo" aria-label="Zone 5 Technologies">
+    <div class="bar"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="word">ZONE<b>5</b></div>
+    <div class="sub"><span>T</span><span>E</span><span>C</span><span>H</span><span>N</span><span>O</span><span>L</span><span>O</span><span>G</span><span>I</span><span>E</span><span>S</span></div>
+  </div>
+  <p class="tagline">Quality used Garmin watches at a fraction of retail â€” every one guaranteed working.</p>
+  <div class="trust"><b class="">300+ watches sold</b><b class="">4.9â˜… across ~100 reviews</b><b class="guar">100% functionality guarantee</b></div>
+</div></header>
+
+<main class="wrap">
+  <div class="meta"><span class="n">6 in stock</span><span>Updated 04 Oct 2026, 10:43</span></div>
+  <div class="grid"><article class="card" tabindex="0" role="button" data-id="c1"><div class="ph"><img src="images/Garmin_Enduro_Solar_51mm/01.jpg" alt="Garmin Enduro Solar 51mm" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R5,400</div><h2 class="title">Garmin Enduro Solar 51mm</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c2"><div class="ph"><img src="images/Garmin_Vivoactive_6_Sealed_in_Box/01.jpg" alt="Garmin Vivoactive 6 Sealed in Box" loading="lazy"><span class="count">4 photos</span></div><div class="body"><div class="price">R5,100</div><h2 class="title">Garmin Vivoactive 6 Sealed in Box</h2><div class="pill">New</div></div></article><article class="card" tabindex="0" role="button" data-id="c3"><div class="ph"><img src="images/Garmin_Descent_G1_Solar_Sealed_in_Box/01.jpg" alt="Garmin Descent G1 Solar Sealed in Box" loading="lazy"><span class="count">5 photos</span></div><div class="body"><div class="price">R9,800</div><h2 class="title">Garmin Descent G1 Solar Sealed in Box</h2><div class="pill">New</div></div></article><article class="card" tabindex="0" role="button" data-id="c4"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro_Sapphire/01.jpg" alt="Garmin Fenix 6X Pro Sapphire" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R5,500</div><h2 class="title">Garmin Fenix 6X Pro Sapphire</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c5"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro/01.jpg" alt="Garmin Fenix 6X Pro" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R5,400</div><h2 class="title">Garmin Fenix 6X Pro</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c6"><div class="ph"><img src="images/Garmin_Enduro_Solar_Titanium_51mm/01.jpg" alt="Garmin Enduro Solar Titanium 51mm" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R5,900</div><h2 class="title">Garmin Enduro Solar Titanium 51mm</h2><div class="pill">Used - Like New</div></div></article></div>
+</main>
+
+<footer><div class="wrap">
+  <a class="cta" href="https://wa.me/27000000000">Message us on WhatsApp</a>
+  <div class="email">or email <a href="mailto:adamcolley1@gmail.com">adamcolley1@gmail.com</a></div>
+  <div>Prices and availability update automatically. All watches carry a 100% functionality guarantee.</div>
+</div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Watch details">
+  <button class="x" aria-label="Close">âœ•</button>
+  <button class="nav prev" aria-label="Previous">â€¹</button>
+  <div class="stage"><img id="lbimg" alt=""></div>
+  <button class="nav next" aria-label="Next">â€º</button>
+  <div class="panel">
+    <div class="ptop">
+      <span class="ptitle" id="lbtitle"></span>
+      <span class="pprice" id="lbprice"></span>
+      <span class="pcond" id="lbcond"></span>
+      <span class="pcount" id="lbcount"></span>
+    </div>
+    <p class="pdesc" id="lbdesc"></p>
+  </div>
+</div>
+
+<script>
+const DATA = {"c1": {"title": "Garmin Enduro Solar 51mm", "images": ["images/Garmin_Enduro_Solar_51mm/01.jpg", "images/Garmin_Enduro_Solar_51mm/02.jpg", "images/Garmin_Enduro_Solar_51mm/03.jpg", "images/Garmin_Enduro_Solar_51mm/04.jpg", "images/Garmin_Enduro_Solar_51mm/05.jpg", "images/Garmin_Enduro_Solar_51mm/06.jpg"], "price": "R5,400", "cond": "Used - Good", "desc": "Garmin Enduro Solar 51mm \nGreat battery life\nGreat condition, no scratches on screen, minimal case wear, see photos.\nCharging cable include"}, "c2": {"title": "Garmin Vivoactive 6 Sealed in Box", "images": ["images/Garmin_Vivoactive_6_Sealed_in_Box/01.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/02.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/03.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/04.jpg"], "price": "R5,100", "cond": "New", "desc": "Brand new still sealed\nGarmin 12 month warranty"}, "c3": {"title": "Garmin Descent G1 Solar Sealed in Box", "images": ["images/Garmin_Descent_G1_Solar_Sealed_in_Box/01.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/02.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/03.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/04.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/05.jpg"], "price": "R9,800", "cond": "New", "desc": "Brand new, sealed.\n12 month warranty from Garmin.\nR14k online"}, "c4": {"title": "Garmin Fenix 6X Pro Sapphire", "images": ["images/Garmin_Fenix_6X_Pro_Sapphire/01.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/02.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/03.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/04.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/05.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/06.jpg"], "price": "R5,500", "cond": "Used - Good", "desc": "Great condition, no scratches on face.\nCharge cable included"}, "c5": {"title": "Garmin Fenix 6X Pro", "images": ["images/Garmin_Fenix_6X_Pro/01.jpg", "images/Garmin_Fenix_6X_Pro/02.jpg", "images/Garmin_Fenix_6X_Pro/03.jpg", "images/Garmin_Fenix_6X_Pro/04.jpg", "images/Garmin_Fenix_6X_Pro/05.jpg", "images/Garmin_Fenix_6X_Pro/06.jpg"], "price": "R5,400", "cond": "Used - Like New", "desc": "Excellent condition, see pictures.\nCharge cable included"}, "c6": {"title": "Garmin Enduro Solar Titanium 51mm", "images": ["images/Garmin_Enduro_Solar_Titanium_51mm/01.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/02.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/03.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/04.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/05.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/06.jpg"], "price": "R5,900", "cond": "Used - Like New", "desc": "Garmin Enduro Solar 51mm\nGreat battery life\nExcellent condition as shown.\nCharging cable included"}};
+const lb=document.getElementById('lb'),img=document.getElementById('lbimg');
+const elT=document.getElementById('lbtitle'),elP=document.getElementById('lbprice'),
+      elC=document.getElementById('lbcond'),elN=document.getElementById('lbcount'),
+      elD=document.getElementById('lbdesc');
+let imgs=[],idx=0;
+function show(){img.src=imgs[idx];elN.textContent=imgs.length>1?(idx+1)+' / '+imgs.length:'';}
+function openCard(a){const r=DATA[a.dataset.id];if(!r||!r.images.length)return;
+  imgs=r.images; idx=0;
+  elT.textContent=r.title||''; elP.textContent=r.price||'';
+  elC.textContent=r.cond||''; elD.textContent=r.desc||'';
+  show(); lb.classList.add('open');}
+function closeLb(){lb.classList.remove('open');img.src='';}
+function step(d){idx=(idx+d+imgs.length)%imgs.length;show();}
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('click',()=>openCard(c));
+  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCard(c);}});
+});
+lb.querySelector('.x').onclick=closeLb;
+lb.querySelector('.prev').onclick=e=>{e.stopPropagation();step(-1);};
+lb.querySelector('.next').onclick=e=>{e.stopPropagation();step(1);};
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLb();else if(e.key==='ArrowLeft')step(-1);else if(e.key==='ArrowRight')step(1);});
+</script>
+</body>
+</html>
