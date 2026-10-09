@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Zone 5 Technology — in stock now</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=Orbitron:wght@800&display=swap" rel="stylesheet">
 <style>
@@ -16,17 +18,16 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--page); color:var(--ink);
   font-family:'Archivo',system-ui,sans-serif; line-height:1.5;
-  padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);
+  padding:0 0 env(safe-area-inset-bottom,0);   /* nothing above the top bar */
 }
 .wrap{max-width:1120px; margin:0 auto; padding:0 20px}
 
 /* Full-width zone-colour bar from the poster. On the LIGHT theme it's a flush
-   colour bar (no black band) with a bold dark tick that overhangs the bar above
-   and below, like the poster. The small top margin is page colour, just enough
-   room for the tick's top overhang. On the DARK theme it sits on a black band
-   with a white tick. */
+   colour bar (no black band) pinned to the very top of the page, with a bold
+   dark tick that starts at the top edge and overhangs the bar below. On the
+   DARK theme it sits on a black band with a white tick. */
 .topbar{display:flex; align-items:center; gap:3px; width:100%; height:13px;
-  margin-top:14px; background:transparent}
+  margin-top:0; background:transparent}
 .topbar i{flex:1; height:13px; display:block; position:relative}
 .topbar i:nth-child(1){background:#B0B0B0}
 .topbar i:nth-child(2){background:#00A8FF}
@@ -34,9 +35,9 @@ body{
 .topbar i:nth-child(4){background:#FF5605}
 .topbar i:nth-child(5){background:#EF0000}
 .topbar i:nth-child(5)::after{content:""; position:absolute; left:62%; z-index:2;
-  top:-9px; bottom:-9px; width:6px; background:#0a0a0a}
+  top:0; bottom:-12px; width:6px; background:#0a0a0a}
 
-header{padding:28px 0 20px; border-bottom:1px solid var(--line)}
+header{padding:calc(28px + env(safe-area-inset-top,0px)) 0 20px; border-bottom:1px solid var(--line)}
 
 /* Optional dark theme (settings.json -> "theme": "dark"): black page, and the
    top bar gets a black band + the white tick breaking out, like the poster. */
@@ -74,6 +75,30 @@ body.dark .card:hover{border-color:#3a424a}
   font-size:clamp(24px,4.5vw,34px); letter-spacing:-.02em; margin:0;
 }
 .tagline{color:var(--muted); max-width:60ch; margin:8px 0 0; font-size:15px}
+.hero{display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,440px); gap:28px; align-items:start}
+@media (max-width:820px){.hero{grid-template-columns:1fr; gap:20px}}
+.order{background:var(--card); border:1px solid var(--line); border-radius:14px;
+  padding:18px 20px 16px; border-top:4px solid #EF0000}
+.order-h{margin:0 0 6px; font-size:17px}
+.order-toggle{appearance:none; background:none; border:0; padding:0; margin:0; width:100%;
+  display:flex; align-items:center; justify-content:space-between; gap:12px; text-align:left;
+  font-family:"Archivo Black",sans-serif; font-weight:400; font-size:17px; letter-spacing:-.01em;
+  color:var(--ink); cursor:default}
+.order-toggle .chev{display:none; flex:none; transition:transform .2s ease}
+/* Phones: "How to order" is a button that expands to the full text */
+@media (max-width:820px){
+  .order{padding:0}
+  .order-h{margin:0}
+  .order-toggle{padding:15px 18px; min-height:48px; cursor:pointer; border-radius:12px}
+  .order-toggle:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+  .order-toggle .chev{display:block}
+  .order.open .order-toggle .chev{transform:rotate(180deg)}
+  .order-body{display:none; padding:0 18px 16px}
+  .order.open .order-body{display:block}
+}
+.order p{margin:0 0 14px; color:var(--muted); font-size:14px; line-height:1.5}
+.order .cta{display:block; text-align:center; margin:0}
+.order .email{margin:11px 0 0; font-size:13.5px; text-align:center; color:var(--muted)}
 .trust{display:flex; flex-wrap:wrap; gap:8px 10px; margin-top:16px}
 .trust b{
   font-weight:500; font-size:13px; background:#fff; border:1px solid var(--line);
@@ -122,6 +147,25 @@ body.dark .card:hover{border-color:#3a424a}
 .empty{padding:60px 0; text-align:center; color:var(--muted)}
 
 footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--muted); font-size:13px}
+.foot-actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:12px}
+.foot-actions .cta{margin:0; display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; box-sizing:border-box; padding:10px 18px; font-size:15px}
+.guar-btn{box-sizing:border-box; justify-content:center}
+@media (max-width:560px){.foot-actions{flex-direction:column; align-items:stretch}}
+.guar-btn{display:inline-flex; align-items:center; gap:8px; background:var(--card); color:var(--trust);
+  border:1px solid rgba(15,157,107,.45); border-radius:10px; padding:10px 16px; min-height:44px;
+  font:600 15px 'Archivo',system-ui,sans-serif; cursor:pointer}
+.guar-btn:hover{border-color:var(--trust)}
+.guar-btn:focus-visible,.guar-close:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.foot-note{margin-top:4px}
+dialog.guar{border:0; padding:0; border-radius:16px; width:min(460px, calc(100% - 32px));
+  background:var(--card); color:var(--ink); box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog.guar::backdrop{background:rgba(10,14,16,.6)}
+.guar-in{padding:24px 24px 20px; border-top:4px solid var(--trust); border-radius:16px}
+.guar h2{font-family:"Archivo Black",sans-serif; font-weight:400; font-size:20px; margin:0 0 10px}
+.guar p{margin:0 0 20px; font-size:15px; line-height:1.6; color:var(--ink)}
+.guar-close{display:block; width:100%; min-height:44px; border:0; border-radius:10px; cursor:pointer;
+  background:var(--ink); color:var(--page); font:600 15px 'Archivo',system-ui,sans-serif}
 .cta{
   display:inline-block; background:var(--accent); color:#fff; text-decoration:none;
   font-weight:600; padding:11px 18px; border-radius:10px; margin-bottom:14px;
@@ -131,7 +175,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--muted)
 .email a{color:var(--ink); font-weight:600}
 
 /* lightbox */
-.lb{position:fixed; inset:0; background:rgba(10,14,16,.95); display:none;
+.lb{position:fixed; inset:0; background:#0b0e10; display:none;
   z-index:50; flex-direction:column; padding:16px}
 .lb.open{display:flex}
 .lb .stage{flex:1; display:flex; align-items:center; justify-content:center; min-height:0}
@@ -154,7 +198,8 @@ footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--muted)
 </head>
 <body class="">
 <div class="topbar"><i></i><i></i><i></i><i></i><i></i></div>
-<header><div class="wrap">
+<header><div class="wrap hero">
+  <div class="brandcol">
   <div class="logo" aria-label="Zone 5 Technology">
     <div class="bar"><i></i><i></i><i></i><i></i><i></i></div>
     <div class="word">ZONE<b>5</b></div>
@@ -162,18 +207,38 @@ footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--muted)
   </div>
   <p class="tagline">Quality used Garmin watches at a fraction of retail - every one guaranteed working.</p>
   <div class="trust"><b class="">300+ watches sold</b><b class="">4.9 stars across ~100 reviews</b><b class="guar">100% functionality guarantee</b></div>
+  </div>
+  <aside class="order" id="order">
+    <h2 class="order-h"><button type="button" class="order-toggle" id="ordertoggle" aria-controls="orderbody"><span>How to order</span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></h2>
+    <div class="order-body" id="orderbody">
+      <p>Found the watch you want? Send us a message on WhatsApp or an email with the watch&#x27;s name and we&#x27;ll arrange the purchase.</p>
+      <a class="cta" href="https://wa.me/27815533984">Message us on WhatsApp</a>
+      <div class="email">or email <a href="mailto:adamcolley1@gmail.com">adamcolley1@gmail.com</a></div>
+    </div>
+  </aside>
 </div></header>
 
 <main class="wrap">
-  <div class="meta"><span class="n">12 in stock</span><span>Updated 09 Oct 2026, 12:42</span></div>
-  <div class="grid"><article class="card" tabindex="0" role="button" data-id="c1"><div class="ph"><img src="images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/01.jpg" alt="Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R13,000</div><h2 class="title">Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c2"><div class="ph"><img src="images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/01.jpg" alt="Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm Silver" loading="lazy"><span class="count">9 photos</span></div><div class="body"><div class="price">R13,000</div><h2 class="title">Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm Silver</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c3"><div class="ph"><img src="images/Garmin_Enduro_Solar_Titanium_51mm/01.jpg" alt="Garmin Enduro Solar Titanium 51mm" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,900</div><h2 class="title">Garmin Enduro Solar Titanium 51mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c4"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro/01.jpg" alt="Garmin Fenix 6X Pro" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,200</div><h2 class="title">Garmin Fenix 6X Pro</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c5"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro_Sapphire/01.jpg" alt="Garmin Fenix 6X Pro Sapphire" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,500</div><h2 class="title">Garmin Fenix 6X Pro Sapphire</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c6"><div class="ph"><img src="images/Garmin_Descent_G1_Solar_Sealed_in_Box/01.jpg" alt="Garmin Descent G1 Solar Sealed in Box" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R9,800</div><h2 class="title">Garmin Descent G1 Solar Sealed in Box</h2><div class="pill">New</div></div></article><article class="card" tabindex="0" role="button" data-id="c7"><div class="ph"><img src="images/Garmin_Vivoactive_6_Sealed_in_Box/01.jpg" alt="Garmin Vivoactive 6 Sealed in Box" loading="lazy"><span class="count">5 photos</span></div><div class="body"><div class="price">R5,000</div><h2 class="title">Garmin Vivoactive 6 Sealed in Box</h2><div class="pill">New</div></div></article><article class="card" tabindex="0" role="button" data-id="c8"><div class="ph"><img src="images/Garmin_Enduro_Solar_51mm/01.jpg" alt="Garmin Enduro Solar 51mm" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,400</div><h2 class="title">Garmin Enduro Solar 51mm</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c9"><div class="ph"><img src="images/Garmin_6_Pro_Sapphire_Titanium_47mm/01.jpg" alt="Garmin 6 Pro Sapphire Titanium 47mm" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R5,600</div><h2 class="title">Garmin 6 Pro Sapphire Titanium 47mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c10"><div class="ph"><img src="images/Garmin_Instinct_2_45mm_Like_New/01.jpg" alt="Garmin Instinct 2 45mm Like New" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R3,700</div><h2 class="title">Garmin Instinct 2 45mm Like New</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c11"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro_Solar_Titanium/01.jpg" alt="Garmin Fenix 6X Pro Solar Titanium" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,700</div><h2 class="title">Garmin Fenix 6X Pro Solar Titanium</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c12"><div class="ph"><img src="images/Garmin_Instinct_2_Solar/01.jpg" alt="Garmin Instinct 2 Solar" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R3,800</div><h2 class="title">Garmin Instinct 2 Solar</h2><div class="pill">Used - Like New</div></div></article></div>
+  <div class="meta"><span class="n">12 in stock</span><span>Updated 09 Oct 2026, 15:50</span></div>
+  <div class="grid"><article class="card" tabindex="0" role="button" data-id="c1"><div class="ph"><img src="images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/01-t.jpg" alt="Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm" decoding="async" fetchpriority="high"><span class="count">7 photos</span></div><div class="body"><div class="price">R13,000</div><h2 class="title">Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c2"><div class="ph"><img src="images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/01-t.jpg" alt="Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm Silver" decoding="async" fetchpriority="high"><span class="count">9 photos</span></div><div class="body"><div class="price">R13,000</div><h2 class="title">Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm Silver</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c3"><div class="ph"><img src="images/Garmin_Enduro_Solar_Titanium_51mm/01-t.jpg" alt="Garmin Enduro Solar Titanium 51mm" decoding="async" fetchpriority="high"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,900</div><h2 class="title">Garmin Enduro Solar Titanium 51mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c4"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro/01-t.jpg" alt="Garmin Fenix 6X Pro" decoding="async" fetchpriority="high"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,200</div><h2 class="title">Garmin Fenix 6X Pro</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c5"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro_Sapphire/01-t.jpg" alt="Garmin Fenix 6X Pro Sapphire" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,500</div><h2 class="title">Garmin Fenix 6X Pro Sapphire</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c6"><div class="ph"><img src="images/Garmin_Descent_G1_Solar_Sealed_in_Box/01-t.jpg" alt="Garmin Descent G1 Solar Sealed in Box" decoding="async" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R9,800</div><h2 class="title">Garmin Descent G1 Solar Sealed in Box</h2><div class="pill">New</div></div></article><article class="card" tabindex="0" role="button" data-id="c7"><div class="ph"><img src="images/Garmin_Vivoactive_6_Sealed_in_Box/01-t.jpg" alt="Garmin Vivoactive 6 Sealed in Box" decoding="async" loading="lazy"><span class="count">5 photos</span></div><div class="body"><div class="price">R5,000</div><h2 class="title">Garmin Vivoactive 6 Sealed in Box</h2><div class="pill">New</div></div></article><article class="card" tabindex="0" role="button" data-id="c8"><div class="ph"><img src="images/Garmin_Enduro_Solar_51mm/01-t.jpg" alt="Garmin Enduro Solar 51mm" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,400</div><h2 class="title">Garmin Enduro Solar 51mm</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c9"><div class="ph"><img src="images/Garmin_6_Pro_Sapphire_Titanium_47mm/01-t.jpg" alt="Garmin 6 Pro Sapphire Titanium 47mm" decoding="async" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R5,600</div><h2 class="title">Garmin 6 Pro Sapphire Titanium 47mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c10"><div class="ph"><img src="images/Garmin_Instinct_2_45mm_Like_New/01-t.jpg" alt="Garmin Instinct 2 45mm Like New" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R3,700</div><h2 class="title">Garmin Instinct 2 45mm Like New</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c11"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro_Solar_Titanium/01-t.jpg" alt="Garmin Fenix 6X Pro Solar Titanium" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,700</div><h2 class="title">Garmin Fenix 6X Pro Solar Titanium</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c12"><div class="ph"><img src="images/Garmin_Instinct_2_Solar/01-t.jpg" alt="Garmin Instinct 2 Solar" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R3,800</div><h2 class="title">Garmin Instinct 2 Solar</h2><div class="pill">Used - Like New</div></div></article></div>
 </main>
 
 <footer><div class="wrap">
-  <a class="cta" href="https://wa.me/27815533984">Message us on WhatsApp</a>
+  <div class="foot-actions">
+    <a class="cta" href="https://wa.me/27815533984">Message us on WhatsApp</a>
+    <button type="button" class="guar-btn" id="guarbtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.2-3 7.4-7 9-4-1.6-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Our guarantee</button>
+  </div>
   <div class="email">or email <a href="mailto:adamcolley1@gmail.com">adamcolley1@gmail.com</a></div>
-  <div>Prices and availability update automatically. All watches carry a 100% functionality guarantee.</div>
+  <div class="foot-note">Prices and availability update automatically. All watches carry a 100% functionality guarantee.</div>
 </div></footer>
+
+<dialog class="guar" id="guar" aria-labelledby="guartitle">
+  <div class="guar-in">
+    <h2 id="guartitle">Our guarantee</h2>
+    <p>We ensure that you receive a perfectly functioning device by offering a 100% functionality guarantee. If you notice any functional issue with your product that we may have missed, contact us within 1 week for a complete replacement. If we do not have a replacement in stock you will receive a full refund.</p>
+    <button type="button" class="guar-close" id="guarclose">Close</button>
+  </div>
+</dialog>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Watch details">
   <button class="x" aria-label="Close">&#10005;</button>
@@ -192,25 +257,50 @@ footer{border-top:1px solid var(--line); padding:26px 0 40px; color:var(--muted)
 </div>
 
 <script>
-const DATA = {"c1": {"title": "Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm", "images": ["images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/01.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/02.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/03.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/04.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/05.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/06.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/07.jpg"], "price": "R13,000", "cond": "Used - Like New", "desc": "Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm\nGreat Condition\nNo scratches on screen\nCharger included"}, "c2": {"title": "Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm Silver", "images": ["images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/01.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/02.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/03.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/04.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/05.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/06.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/07.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/08.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/09.jpg"], "price": "R13,000", "cond": "Used - Like New", "desc": "Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm\nGreat Condition\nNo scratches on screen\nBlack, white or grey strap available\nCharger included"}, "c3": {"title": "Garmin Enduro Solar Titanium 51mm", "images": ["images/Garmin_Enduro_Solar_Titanium_51mm/01.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/02.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/03.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/04.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/05.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/06.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/07.jpg"], "price": "R5,900", "cond": "Used - Like New", "desc": "Garmin Enduro Solar 51mm\nGreat battery life\nExcellent condition as shown.\nCharging cable included"}, "c4": {"title": "Garmin Fenix 6X Pro", "images": ["images/Garmin_Fenix_6X_Pro/01.jpg", "images/Garmin_Fenix_6X_Pro/02.jpg", "images/Garmin_Fenix_6X_Pro/03.jpg", "images/Garmin_Fenix_6X_Pro/04.jpg", "images/Garmin_Fenix_6X_Pro/05.jpg", "images/Garmin_Fenix_6X_Pro/06.jpg", "images/Garmin_Fenix_6X_Pro/07.jpg"], "price": "R5,200", "cond": "Used - Like New", "desc": "Excellent condition, see pictures.\nCharge cable included"}, "c5": {"title": "Garmin Fenix 6X Pro Sapphire", "images": ["images/Garmin_Fenix_6X_Pro_Sapphire/01.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/02.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/03.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/04.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/05.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/06.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/07.jpg"], "price": "R5,500", "cond": "Used - Good", "desc": "Great condition, no scratches on face.\nCharge cable included"}, "c6": {"title": "Garmin Descent G1 Solar Sealed in Box", "images": ["images/Garmin_Descent_G1_Solar_Sealed_in_Box/01.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/02.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/03.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/04.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/05.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/06.jpg"], "price": "R9,800", "cond": "New", "desc": "Brand new, sealed.\n12 month warranty from Garmin.\nR14k online"}, "c7": {"title": "Garmin Vivoactive 6 Sealed in Box", "images": ["images/Garmin_Vivoactive_6_Sealed_in_Box/01.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/02.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/03.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/04.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/05.jpg"], "price": "R5,000", "cond": "New", "desc": "Brand new still sealed\nGarmin 12 month warranty"}, "c8": {"title": "Garmin Enduro Solar 51mm", "images": ["images/Garmin_Enduro_Solar_51mm/01.jpg", "images/Garmin_Enduro_Solar_51mm/02.jpg", "images/Garmin_Enduro_Solar_51mm/03.jpg", "images/Garmin_Enduro_Solar_51mm/04.jpg", "images/Garmin_Enduro_Solar_51mm/05.jpg", "images/Garmin_Enduro_Solar_51mm/06.jpg", "images/Garmin_Enduro_Solar_51mm/07.jpg"], "price": "R5,400", "cond": "Used - Good", "desc": "Garmin Enduro Solar 51mm \nGreat battery life\nGreat condition, no scratches on screen, minimal case wear, see photos.\nCharging cable include"}, "c9": {"title": "Garmin 6 Pro Sapphire Titanium 47mm", "images": ["images/Garmin_6_Pro_Sapphire_Titanium_47mm/01.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/02.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/03.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/04.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/05.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/06.jpg"], "price": "R5,600", "cond": "Used - Like New", "desc": "Great condition, no scratches on screen. \nGreat battery life.\nCharging cable included"}, "c10": {"title": "Garmin Instinct 2 45mm Like New", "images": ["images/Garmin_Instinct_2_45mm_Like_New/01.jpg", "images/Garmin_Instinct_2_45mm_Like_New/02.jpg", "images/Garmin_Instinct_2_45mm_Like_New/03.jpg", "images/Garmin_Instinct_2_45mm_Like_New/04.jpg", "images/Garmin_Instinct_2_45mm_Like_New/05.jpg", "images/Garmin_Instinct_2_45mm_Like_New/06.jpg", "images/Garmin_Instinct_2_45mm_Like_New/07.jpg"], "price": "R3,700", "cond": "Used - Like New", "desc": "Garmin Instinct 2 45mm\nExcellent condition\nCharging cable included"}, "c11": {"title": "Garmin Fenix 6X Pro Solar Titanium", "images": ["images/Garmin_Fenix_6X_Pro_Solar_Titanium/01.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/02.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/03.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/04.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/05.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/06.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/07.jpg"], "price": "R5,700", "cond": "Used - Good", "desc": "Great condition, see pictures. \nExcellent battery life.\nCharging cable included"}, "c12": {"title": "Garmin Instinct 2 Solar", "images": ["images/Garmin_Instinct_2_Solar/01.jpg", "images/Garmin_Instinct_2_Solar/02.jpg", "images/Garmin_Instinct_2_Solar/03.jpg", "images/Garmin_Instinct_2_Solar/04.jpg", "images/Garmin_Instinct_2_Solar/05.jpg", "images/Garmin_Instinct_2_Solar/06.jpg", "images/Garmin_Instinct_2_Solar/07.jpg"], "price": "R3,800", "cond": "Used - Like New", "desc": "Garmin Instinct 2 Solar 45mm\nExcellent condition\nCharging cable included"}};
+const DATA = {"c1": {"title": "Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm", "images": ["images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/01.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/02.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/03.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/04.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/05.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/06.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/07.jpg"], "thumbs": ["images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/01-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/02-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/03-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/04-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/05-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/06-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/07-t.jpg"], "price": "R13,000", "cond": "Used - Like New", "desc": "Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm\nGreat Condition\nNo scratches on screen\nCharger included"}, "c2": {"title": "Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm Silver", "images": ["images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/01.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/02.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/03.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/04.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/05.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/06.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/07.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/08.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/09.jpg"], "thumbs": ["images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/01-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/02-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/03-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/04-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/05-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/06-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/07-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/08-t.jpg", "images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/09-t.jpg"], "price": "R13,000", "cond": "Used - Like New", "desc": "Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm\nGreat Condition\nNo scratches on screen\nBlack, white or grey strap available\nCharger included"}, "c3": {"title": "Garmin Enduro Solar Titanium 51mm", "images": ["images/Garmin_Enduro_Solar_Titanium_51mm/01.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/02.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/03.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/04.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/05.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/06.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/07.jpg"], "thumbs": ["images/Garmin_Enduro_Solar_Titanium_51mm/01-t.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/02-t.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/03-t.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/04-t.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/05-t.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/06-t.jpg", "images/Garmin_Enduro_Solar_Titanium_51mm/07-t.jpg"], "price": "R5,900", "cond": "Used - Like New", "desc": "Garmin Enduro Solar 51mm\nGreat battery life\nExcellent condition as shown.\nCharging cable included"}, "c4": {"title": "Garmin Fenix 6X Pro", "images": ["images/Garmin_Fenix_6X_Pro/01.jpg", "images/Garmin_Fenix_6X_Pro/02.jpg", "images/Garmin_Fenix_6X_Pro/03.jpg", "images/Garmin_Fenix_6X_Pro/04.jpg", "images/Garmin_Fenix_6X_Pro/05.jpg", "images/Garmin_Fenix_6X_Pro/06.jpg", "images/Garmin_Fenix_6X_Pro/07.jpg"], "thumbs": ["images/Garmin_Fenix_6X_Pro/01-t.jpg", "images/Garmin_Fenix_6X_Pro/02-t.jpg", "images/Garmin_Fenix_6X_Pro/03-t.jpg", "images/Garmin_Fenix_6X_Pro/04-t.jpg", "images/Garmin_Fenix_6X_Pro/05-t.jpg", "images/Garmin_Fenix_6X_Pro/06-t.jpg", "images/Garmin_Fenix_6X_Pro/07-t.jpg"], "price": "R5,200", "cond": "Used - Like New", "desc": "Excellent condition, see pictures.\nCharge cable included"}, "c5": {"title": "Garmin Fenix 6X Pro Sapphire", "images": ["images/Garmin_Fenix_6X_Pro_Sapphire/01.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/02.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/03.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/04.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/05.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/06.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/07.jpg"], "thumbs": ["images/Garmin_Fenix_6X_Pro_Sapphire/01-t.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/02-t.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/03-t.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/04-t.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/05-t.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/06-t.jpg", "images/Garmin_Fenix_6X_Pro_Sapphire/07-t.jpg"], "price": "R5,500", "cond": "Used - Good", "desc": "Great condition, no scratches on face.\nCharge cable included"}, "c6": {"title": "Garmin Descent G1 Solar Sealed in Box", "images": ["images/Garmin_Descent_G1_Solar_Sealed_in_Box/01.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/02.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/03.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/04.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/05.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/06.jpg"], "thumbs": ["images/Garmin_Descent_G1_Solar_Sealed_in_Box/01-t.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/02-t.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/03-t.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/04-t.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/05-t.jpg", "images/Garmin_Descent_G1_Solar_Sealed_in_Box/06-t.jpg"], "price": "R9,800", "cond": "New", "desc": "Brand new, sealed.\n12 month warranty from Garmin.\nR14k online"}, "c7": {"title": "Garmin Vivoactive 6 Sealed in Box", "images": ["images/Garmin_Vivoactive_6_Sealed_in_Box/01.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/02.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/03.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/04.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/05.jpg"], "thumbs": ["images/Garmin_Vivoactive_6_Sealed_in_Box/01-t.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/02-t.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/03-t.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/04-t.jpg", "images/Garmin_Vivoactive_6_Sealed_in_Box/05-t.jpg"], "price": "R5,000", "cond": "New", "desc": "Brand new still sealed\nGarmin 12 month warranty"}, "c8": {"title": "Garmin Enduro Solar 51mm", "images": ["images/Garmin_Enduro_Solar_51mm/01.jpg", "images/Garmin_Enduro_Solar_51mm/02.jpg", "images/Garmin_Enduro_Solar_51mm/03.jpg", "images/Garmin_Enduro_Solar_51mm/04.jpg", "images/Garmin_Enduro_Solar_51mm/05.jpg", "images/Garmin_Enduro_Solar_51mm/06.jpg", "images/Garmin_Enduro_Solar_51mm/07.jpg"], "thumbs": ["images/Garmin_Enduro_Solar_51mm/01-t.jpg", "images/Garmin_Enduro_Solar_51mm/02-t.jpg", "images/Garmin_Enduro_Solar_51mm/03-t.jpg", "images/Garmin_Enduro_Solar_51mm/04-t.jpg", "images/Garmin_Enduro_Solar_51mm/05-t.jpg", "images/Garmin_Enduro_Solar_51mm/06-t.jpg", "images/Garmin_Enduro_Solar_51mm/07-t.jpg"], "price": "R5,400", "cond": "Used - Good", "desc": "Garmin Enduro Solar 51mm \nGreat battery life\nGreat condition, no scratches on screen, minimal case wear, see photos.\nCharging cable include"}, "c9": {"title": "Garmin 6 Pro Sapphire Titanium 47mm", "images": ["images/Garmin_6_Pro_Sapphire_Titanium_47mm/01.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/02.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/03.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/04.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/05.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/06.jpg"], "thumbs": ["images/Garmin_6_Pro_Sapphire_Titanium_47mm/01-t.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/02-t.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/03-t.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/04-t.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/05-t.jpg", "images/Garmin_6_Pro_Sapphire_Titanium_47mm/06-t.jpg"], "price": "R5,600", "cond": "Used - Like New", "desc": "Great condition, no scratches on screen. \nGreat battery life.\nCharging cable included"}, "c10": {"title": "Garmin Instinct 2 45mm Like New", "images": ["images/Garmin_Instinct_2_45mm_Like_New/01.jpg", "images/Garmin_Instinct_2_45mm_Like_New/02.jpg", "images/Garmin_Instinct_2_45mm_Like_New/03.jpg", "images/Garmin_Instinct_2_45mm_Like_New/04.jpg", "images/Garmin_Instinct_2_45mm_Like_New/05.jpg", "images/Garmin_Instinct_2_45mm_Like_New/06.jpg", "images/Garmin_Instinct_2_45mm_Like_New/07.jpg"], "thumbs": ["images/Garmin_Instinct_2_45mm_Like_New/01-t.jpg", "images/Garmin_Instinct_2_45mm_Like_New/02-t.jpg", "images/Garmin_Instinct_2_45mm_Like_New/03-t.jpg", "images/Garmin_Instinct_2_45mm_Like_New/04-t.jpg", "images/Garmin_Instinct_2_45mm_Like_New/05-t.jpg", "images/Garmin_Instinct_2_45mm_Like_New/06-t.jpg", "images/Garmin_Instinct_2_45mm_Like_New/07-t.jpg"], "price": "R3,700", "cond": "Used - Like New", "desc": "Garmin Instinct 2 45mm\nExcellent condition\nCharging cable included"}, "c11": {"title": "Garmin Fenix 6X Pro Solar Titanium", "images": ["images/Garmin_Fenix_6X_Pro_Solar_Titanium/01.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/02.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/03.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/04.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/05.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/06.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/07.jpg"], "thumbs": ["images/Garmin_Fenix_6X_Pro_Solar_Titanium/01-t.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/02-t.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/03-t.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/04-t.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/05-t.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/06-t.jpg", "images/Garmin_Fenix_6X_Pro_Solar_Titanium/07-t.jpg"], "price": "R5,700", "cond": "Used - Good", "desc": "Great condition, see pictures. \nExcellent battery life.\nCharging cable included"}, "c12": {"title": "Garmin Instinct 2 Solar", "images": ["images/Garmin_Instinct_2_Solar/01.jpg", "images/Garmin_Instinct_2_Solar/02.jpg", "images/Garmin_Instinct_2_Solar/03.jpg", "images/Garmin_Instinct_2_Solar/04.jpg", "images/Garmin_Instinct_2_Solar/05.jpg", "images/Garmin_Instinct_2_Solar/06.jpg", "images/Garmin_Instinct_2_Solar/07.jpg"], "thumbs": ["images/Garmin_Instinct_2_Solar/01-t.jpg", "images/Garmin_Instinct_2_Solar/02-t.jpg", "images/Garmin_Instinct_2_Solar/03-t.jpg", "images/Garmin_Instinct_2_Solar/04-t.jpg", "images/Garmin_Instinct_2_Solar/05-t.jpg", "images/Garmin_Instinct_2_Solar/06-t.jpg", "images/Garmin_Instinct_2_Solar/07-t.jpg"], "price": "R3,800", "cond": "Used - Like New", "desc": "Garmin Instinct 2 Solar 45mm\nExcellent condition\nCharging cable included"}};
 const lb=document.getElementById('lb'),img=document.getElementById('lbimg');
 const elT=document.getElementById('lbtitle'),elP=document.getElementById('lbprice'),
       elC=document.getElementById('lbcond'),elN=document.getElementById('lbcount'),
       elD=document.getElementById('lbdesc');
-let imgs=[],idx=0;
-function show(){img.src=imgs[idx];elN.textContent=imgs.length>1?(idx+1)+' / '+imgs.length:'';}
+let imgs=[],thumbs=[],idx=0,tok=0;
+const pre={};
+function load(u){if(u&&!pre[u]){const im=new Image();im.decoding='async';im.src=u;pre[u]=im;}return pre[u];}
+function ready(u){const im=pre[u];return im&&im.complete&&im.naturalWidth>0;}
+function show(){const t=++tok,u=imgs[idx],im=load(u);
+  elN.textContent=imgs.length>1?(idx+1)+' / '+imgs.length:'';
+  if(ready(u)){img.src=u;}
+  else{img.src=thumbs[idx]||u;                       /* small copy shows instantly */
+    im.addEventListener('load',()=>{if(t===tok)img.src=u;},{once:true});}
+  if(imgs.length>1){load(imgs[(idx+1)%imgs.length]);load(imgs[(idx-1+imgs.length)%imgs.length]);}}
 function openCard(a){const r=DATA[a.dataset.id];if(!r||!r.images.length)return;
-  imgs=r.images; idx=0;
+  imgs=r.images; thumbs=r.thumbs||[]; idx=0;
   elT.textContent=r.title||''; elP.textContent=r.price||'';
   elC.textContent=r.cond||''; elD.textContent=r.desc||'';
-  show(); lb.classList.add('open');}
-function closeLb(){lb.classList.remove('open');img.src='';}
+  show(); lb.classList.add('open');
+  thumbs.forEach(load);                               /* then the rest of this watch */
+  setTimeout(()=>{if(imgs===r.images)imgs.forEach(load);},300);}
+function closeLb(){lb.classList.remove('open');tok++;img.removeAttribute('src');}
 function step(d){idx=(idx+d+imgs.length)%imgs.length;show();}
+/* Start loading a watch's first big photo as soon as you hover/touch its card */
+document.querySelectorAll('.card').forEach(c=>{const warm=()=>{const r=DATA[c.dataset.id];if(r)load(r.images[0]);};
+  c.addEventListener('pointerenter',warm,{once:true});c.addEventListener('touchstart',warm,{once:true,passive:true});});
 document.querySelectorAll('.card').forEach(c=>{
   c.addEventListener('click',()=>openCard(c));
   c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCard(c);}});
 });
 lb.querySelector('.x').onclick=closeLb;
+/* "How to order": always open on desktop, tap to expand on phones */
+const ord=document.getElementById('order'),ot=document.getElementById('ordertoggle'),
+      mq=window.matchMedia('(max-width:820px)');
+function syncOrder(){if(mq.matches){ot.disabled=false;ot.setAttribute('aria-expanded',ord.classList.contains('open')?'true':'false');}
+  else{ot.disabled=true;ot.removeAttribute('aria-expanded');}}
+ot.addEventListener('click',()=>{ord.classList.toggle('open');syncOrder();});
+(mq.addEventListener?mq.addEventListener('change',syncOrder):mq.addListener(syncOrder));syncOrder();
+/* "Our guarantee" pop-up */
+const guar=document.getElementById('guar'),guarBtn=document.getElementById('guarbtn');
+guarBtn.addEventListener('click',()=>{if(guar.showModal)guar.showModal();else guar.setAttribute('open','');});
+document.getElementById('guarclose').addEventListener('click',()=>{if(guar.close)guar.close();else guar.removeAttribute('open');});
+guar.addEventListener('click',e=>{if(e.target===guar)guar.close();});   /* tap outside to close */
 lb.querySelector('.prev').onclick=e=>{e.stopPropagation();step(-1);};
 lb.querySelector('.next').onclick=e=>{e.stopPropagation();step(1);};
 lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
