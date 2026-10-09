@@ -185,6 +185,15 @@ dialog.guar::backdrop{background:rgba(10,14,16,.6)}
 .lb .x{top:18px; right:18px; z-index:2}
 .lb .prev{left:18px; top:46%; transform:translateY(-50%)}
 .lb .next{right:18px; top:46%; transform:translateY(-50%)}
+/* Arrows: bold white chevrons with a black outline, so they show on any photo */
+.lb .nav{background:none; width:56px; height:56px; display:flex; align-items:center; justify-content:center;
+  z-index:2; -webkit-tap-highlight-color:transparent}
+.lb .nav svg{width:36px; height:36px; overflow:visible; filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
+.lb .nav .ol{stroke:#000; stroke-width:5.5}
+.lb .nav .fg{stroke:#fff; stroke-width:2.8}
+.lb .nav:hover .fg{stroke:#f3f5f6}
+.lb .nav:focus-visible{outline:2px solid #fff; outline-offset:2px}
+@media (max-width:560px){.lb .prev{left:6px} .lb .next{right:6px}}
 .lb .panel{max-width:720px; margin:14px auto 2px; text-align:center; color:#fff}
 .lb .ptop{display:flex; justify-content:center; align-items:baseline;
   gap:12px; flex-wrap:wrap}
@@ -219,7 +228,7 @@ dialog.guar::backdrop{background:rgba(10,14,16,.6)}
 </div></header>
 
 <main class="wrap">
-  <div class="meta"><span class="n">12 in stock</span><span>Updated 09 Oct 2026, 16:15</span></div>
+  <div class="meta"><span class="n">12 in stock</span><span>Updated 09 Oct 2026, 16:22</span></div>
   <div class="grid"><article class="card" tabindex="0" role="button" data-id="c1"><div class="ph"><img src="images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm/01-t.jpg" alt="Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm" decoding="async" fetchpriority="high"><span class="count">7 photos</span></div><div class="body"><div class="price">R13,000</div><h2 class="title">Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c2"><div class="ph"><img src="images/Garmin_Fenix_7_Pro_Sapphire_Solar_Titanium_47mm_Silver/01-t.jpg" alt="Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm Silver" decoding="async" fetchpriority="high"><span class="count">9 photos</span></div><div class="body"><div class="price">R13,000</div><h2 class="title">Garmin Fenix 7 Pro Sapphire Solar Titanium 47mm Silver</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c3"><div class="ph"><img src="images/Garmin_Enduro_Solar_Titanium_51mm/01-t.jpg" alt="Garmin Enduro Solar Titanium 51mm" decoding="async" fetchpriority="high"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,900</div><h2 class="title">Garmin Enduro Solar Titanium 51mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c4"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro/01-t.jpg" alt="Garmin Fenix 6X Pro" decoding="async" fetchpriority="high"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,200</div><h2 class="title">Garmin Fenix 6X Pro</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c5"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro_Sapphire/01-t.jpg" alt="Garmin Fenix 6X Pro Sapphire" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,500</div><h2 class="title">Garmin Fenix 6X Pro Sapphire</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c6"><div class="ph"><img src="images/Garmin_Descent_G1_Solar_Sealed_in_Box/01-t.jpg" alt="Garmin Descent G1 Solar Sealed in Box" decoding="async" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R9,800</div><h2 class="title">Garmin Descent G1 Solar Sealed in Box</h2><div class="pill">New</div></div></article><article class="card" tabindex="0" role="button" data-id="c7"><div class="ph"><img src="images/Garmin_Vivoactive_6_Sealed_in_Box/01-t.jpg" alt="Garmin Vivoactive 6 Sealed in Box" decoding="async" loading="lazy"><span class="count">5 photos</span></div><div class="body"><div class="price">R5,000</div><h2 class="title">Garmin Vivoactive 6 Sealed in Box</h2><div class="pill">New</div></div></article><article class="card" tabindex="0" role="button" data-id="c8"><div class="ph"><img src="images/Garmin_Enduro_Solar_51mm/01-t.jpg" alt="Garmin Enduro Solar 51mm" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,400</div><h2 class="title">Garmin Enduro Solar 51mm</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c9"><div class="ph"><img src="images/Garmin_6_Pro_Sapphire_Titanium_47mm/01-t.jpg" alt="Garmin 6 Pro Sapphire Titanium 47mm" decoding="async" loading="lazy"><span class="count">6 photos</span></div><div class="body"><div class="price">R5,600</div><h2 class="title">Garmin 6 Pro Sapphire Titanium 47mm</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c10"><div class="ph"><img src="images/Garmin_Instinct_2_45mm_Like_New/01-t.jpg" alt="Garmin Instinct 2 45mm Like New" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R3,700</div><h2 class="title">Garmin Instinct 2 45mm Like New</h2><div class="pill">Used - Like New</div></div></article><article class="card" tabindex="0" role="button" data-id="c11"><div class="ph"><img src="images/Garmin_Fenix_6X_Pro_Solar_Titanium/01-t.jpg" alt="Garmin Fenix 6X Pro Solar Titanium" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R5,700</div><h2 class="title">Garmin Fenix 6X Pro Solar Titanium</h2><div class="pill">Used - Good</div></div></article><article class="card" tabindex="0" role="button" data-id="c12"><div class="ph"><img src="images/Garmin_Instinct_2_Solar/01-t.jpg" alt="Garmin Instinct 2 Solar" decoding="async" loading="lazy"><span class="count">7 photos</span></div><div class="body"><div class="price">R3,800</div><h2 class="title">Garmin Instinct 2 Solar</h2><div class="pill">Used - Like New</div></div></article></div>
 </main>
 
@@ -243,9 +252,9 @@ dialog.guar::backdrop{background:rgba(10,14,16,.6)}
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Watch details">
   <button class="x" aria-label="Close">&#10005;</button>
-  <button class="nav prev" aria-label="Previous">&#8249;</button>
+  <button class="nav prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="ol" d="M15 5l-7 7 7 7"/><path class="fg" d="M15 5l-7 7 7 7"/></svg></button>
   <div class="stage"><img id="lbimg" alt=""></div>
-  <button class="nav next" aria-label="Next">&#8250;</button>
+  <button class="nav next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="ol" d="M9 5l7 7-7 7"/><path class="fg" d="M9 5l7 7-7 7"/></svg></button>
   <div class="panel">
     <div class="ptop">
       <span class="ptitle" id="lbtitle"></span>
